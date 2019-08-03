@@ -51,8 +51,8 @@ public class ResultData<T> implements Serializable {
         return failResult(null);
     }
 
-    public static ResultData failResult(Object data) {
-        return failResult(ResultCode.FAIL.getDesc(),data);
+    public static ResultData failResult(String msg) {
+        return failResult(msg,null);
     }
 
     public static ResultData failResult(String msg,Object data) {
