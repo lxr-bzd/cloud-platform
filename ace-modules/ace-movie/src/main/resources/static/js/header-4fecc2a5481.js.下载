@@ -1,0 +1,22 @@
+//pc client redirect to www site
+/*
+if(!navigator.userAgent.match(/(Android|iPhone|iPad|iPod|webOS)/))
+{
+	var www_host = 'http://www.80s.tw';
+	var path_pattern = /^\/movie\/\d+-\d+-[a-z0-9]-\d{0,4}-\d-[a-z0-9]-[0hg]$/i ;
+	if (path_pattern.test(this.location.pathname)) {
+		document.location = www_host;
+	}
+	else {
+		document.location = www_host + this.location.pathname;
+	}
+}
+*/
+//baidu tongji
+var _hmt = _hmt || [];
+(function() {
+var hm = document.createElement("script");
+hm.src = "https://hm.baidu.com/hm.js?652f84236c4c73e10377e2dd54891ff3";
+var s = document.getElementsByTagName("script")[0]; 
+s.parentNode.insertBefore(hm, s);
+})();

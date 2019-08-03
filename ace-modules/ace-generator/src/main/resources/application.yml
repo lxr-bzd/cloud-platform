@@ -10,15 +10,16 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/ag_auth?useUnicode=true&characterEncoding=UTF-8
-        username: root
-        password: 123456
+        url: jdbc:mysql://localhost:3306/ag_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
+        username: baisheng
+        password: baisheng123
     jackson:
         time-zone: GMT+8
         date-format: yyyy-MM-dd HH:mm:ss
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
+
 
 # Mybatis配置
 mybatis:

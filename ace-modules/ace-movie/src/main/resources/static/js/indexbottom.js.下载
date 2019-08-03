@@ -1,0 +1,14 @@
+
+    var target_url = "//t.cn/EzryR6S";
+	var picurl="//pic.cytcm.com/15/640-150.gif";
+    var aa$ = $('<a target="_blank" href="'+target_url+'"><img style="width: 100%;" src="'+picurl+'"></a>');
+  	var close$=$('<div class="logo_down_gb" style="position: absolute;top: -30px;right: 0;z-index: 999;"><img src="/m/img/logo_gb.png"></div>');
+     A = $('<div id="ldgindexbuttom" style="position: fixed;bottom: 0px;"></div>');
+   A.append(close$);  
+  A.append(aa$);
+    $('body').append(A);
+  	$('body').css("padding-bottom","70px");
+  $(".logo_down_gb").click(function(){
+  $("#ldgindexbuttom").fadeOut();
+    $('body').css("padding-bottom","0px");
+  })

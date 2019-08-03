@@ -62,7 +62,7 @@ public class RequestBodyRoutePredicateFactory
                     return Mono.just(true);
                 } catch (ClassCastException e) {
                     if (LOGGER.isDebugEnabled()) {
-                        LOGGER.debug("Predicate test failed because class in predicate does not match the cached body object",
+                        LOGGER.debug("Predicate task failed because class in predicate does not match the cached body object",
                                 e);
                     }
                 }

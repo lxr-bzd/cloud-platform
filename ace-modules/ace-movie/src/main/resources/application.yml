@@ -1,0 +1,36 @@
+# Tomcat
+server:
+    port: 9000
+
+# mysql
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ag_move?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
+        username: baisheng
+        password: baisheng123
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    thymeleaf:
+        mode: LEGACYHTML5
+        cache: false
+
+# Mybatis配置
+mybatis-plus:
+    mapper-locations: classpath:/mapper/*.xml
+    typeAliasesPackage: com.baisheng.utown.wisdomfactory.entity
+    global-config:
+        db-config:
+            id-type: id_worker
+            field-strategy: not_null
+            column-underline: true
+            logic-delete-value: 0
+            logic-not-delete-value: 1
+            db-type: mysql
+        refresh: true
+    configuration:
+        map-underscore-to-camel-case: true
+        cache-enabled: false
+

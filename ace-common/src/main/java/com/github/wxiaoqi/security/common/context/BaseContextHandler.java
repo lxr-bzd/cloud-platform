@@ -83,33 +83,33 @@ public class BaseContextHandler {
 
         @Test
         public void testSetContextVariable() throws InterruptedException {
-            BaseContextHandler.set("test", "main");
+            BaseContextHandler.set("task", "main");
             new Thread(()->{
-                BaseContextHandler.set("test", "moo");
+                BaseContextHandler.set("task", "moo");
 
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                assertEquals(BaseContextHandler.get("test"), "moo");
+                assertEquals(BaseContextHandler.get("task"), "moo");
                 logger.info("thread one done!");
             }).start();
             new Thread(()->{
-                BaseContextHandler.set("test", "moo2");
-                assertEquals(BaseContextHandler.get("test"), "moo2");
+                BaseContextHandler.set("task", "moo2");
+                assertEquals(BaseContextHandler.get("task"), "moo2");
                 logger.info("thread two done!");
             }).start();
 
             Thread.sleep(5000);
-            assertEquals(BaseContextHandler.get("test"), "main");
+            assertEquals(BaseContextHandler.get("task"), "main");
             logger.info("main one done!");
         }
 
         @Test
         public void testSetUserInfo(){
-            BaseContextHandler.setUserID("test");
-            assertEquals(BaseContextHandler.getUserID(), "test");
+            BaseContextHandler.setUserID("task");
+            assertEquals(BaseContextHandler.getUserID(), "task");
             BaseContextHandler.setUsername("test2");
             assertEquals(BaseContextHandler.getUsername(), "test2");
         }
