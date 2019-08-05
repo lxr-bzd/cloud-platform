@@ -12,12 +12,12 @@
     <meta name="description"
           content="80s手机电影网站.专业提供MP4格式的手机视频下载,电影,电视剧,动漫,综艺,音乐短片,完美支持安卓智能手机,苹果iphone,ipad平板电脑等.免费下载手机电影就上80s.la">
 
-    <div th:include="common/head_res"></div>
+    <div th:replace="common/head_res"></div>
 
 </head>
 <body style="padding-bottom: 0px;">
 
-<div th:include="common/head"></div>
+<div th:replace="common/head"></div>
 
 
 <div class="container">
@@ -147,18 +147,16 @@
 
 <div th:include="common/footer"></div>
 
-<script src="./js/footer.js.下载"></script>
-<script src="./js/indexbottom.js.下载"></script>
+<!--<script src="./js/footer.js.下载"></script>
+<script src="./js/indexbottom.js.下载"></script>-->
 <div id="ldgindexbuttom" style="position: fixed; bottom: 0px; display: none;">
     <div class="logo_down_gb" style="position: absolute;top: -30px;right: 0;z-index: 999;"><img src="./js/logo_gb.png">
     </div>
     <a target="_blank" href="https://t.cn/EzryR6S"><img style="width: 100%;" src="./js/640-150.gif"></a></div>
-<span style="display:none;"><script src="./js/z_stat.php" language="JavaScript"></script><script src="./js/core.php"
+<span style="display:none;"><!--<script src="./js/z_stat.php" language="JavaScript"></script><script src="./js/core.php"
                                                                                                  charset="utf-8"
-                                                                                                 type="text/javascript"></script><a
-        href="https://www.cnzz.com/stat/website.php?web_id=1275110260" target="_blank" title="站长统计">站长统计</a></span>
-
-
+                                                                                                 type="text/javascript"></script>-->
+    <a href="https://www.cnzz.com/stat/website.php?web_id=1275110260" target="_blank" title="站长统计">站长统计</a></span>
 
 
 </body>

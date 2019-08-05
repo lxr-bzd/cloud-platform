@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class ResultData<T> implements Serializable {
     private Integer code;
 
-    private String message;
+    private String msg;
 
     private T data;
 
@@ -29,7 +29,7 @@ public class ResultData<T> implements Serializable {
      */
     public ResultData(Integer code, String message,T data) {
         this.code = code;
-        this.message = message;
+        this.msg = message;
         this.data = data;
     }
 

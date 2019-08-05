@@ -14,6 +14,11 @@ import com.github.wxiaoqi.security.movie.entity.User;
 public interface IUserService extends IService<User> {
 
 
-     void verifyUser(User user);
+     User verifyUser(User user);
+
+     void registerUser(User user);
+
+     User getByAccount(String account);
+
 
 }

@@ -10,12 +10,12 @@
     <meta name="keywords" content="mp4,手机电影下载,mp4电影下载,ipad电影下载,平板电脑电影">
     <meta name="description" content="80s手机电影网站.专业提供MP4格式的手机视频下载,电影,电视剧,动漫,综艺,音乐短片,完美支持安卓智能手机,苹果iphone,ipad平板电脑等.免费下载手机电影就上80s.la">
 
-    <div th:include="common/head_res"></div>
+    <div th:replace="common/head_res"></div>
 
 </head>
 <body>
 
-<div th:include="common/head"></div>
+<div th:replace="common/head"></div>
 
 
 <div class="container">
@@ -30,10 +30,52 @@
         <input type="password" class="form-control" id="pwd" placeholder="请输入名称">
     </div>
 
-    <button type="button" class="btn btn-primary btn-lg btn-block">登陆</button>
+    <div style="margin-bottom:15px">
+        <a href="register">没有账号，去注册 </a>
+    </div>
+
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="login()">登陆</button>
 </form>
 
 </div>
 
 </body>
-</html>
+<script type="application/javascript">
+
+    function login() {
+        var  account = $("#account").val();
+        if(!account){
+            $app.alert("账号不能为空");
+            return;
+        }
+        var  pwd = $("#pwd").val();
+        if(!pwd){
+            $app.alert("密码不能为空");
+            return;
+        }
+
+
+        var data = {account:account,pwd:pwd};
+
+
+
+        $app.request("api/login",function(json){
+
+            if(json.code!=1){
+                $app.alert(json.msg);
+                return;
+            }
+
+
+            window.location.replace("index");
+
+
+        },data);
+
+
+
+    }
+
+
+</script>
+    </html>

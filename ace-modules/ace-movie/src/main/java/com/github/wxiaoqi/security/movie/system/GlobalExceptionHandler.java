@@ -19,6 +19,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
 //    @ResponseBody
     public ResultData exceptionHandler(Exception e) {
+
+        e.printStackTrace();
+
+
         if(e instanceof ApplicationException){
 
             return ResultData.failResult(e.getMessage());

@@ -7,7 +7,7 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/ag_move?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
+        url: jdbc:mysql://localhost:3306/ag_movie?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT
         username: baisheng
         password: baisheng123
     jackson:

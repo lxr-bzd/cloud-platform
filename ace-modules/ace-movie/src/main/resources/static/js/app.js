@@ -12,12 +12,12 @@ $app.getContext = function(){
     return context;
 }
 
-$app.request = function(url,call,param){
+$app.request = function(url,call,data,param){
     $.ajax({
         type: "post",
         dataType:"json",
         url: url,
-        data:((param&&param.param)?param.param:""),
+        data:data,
         beforeSend: function(XMLHttpRequest){
 
         },
