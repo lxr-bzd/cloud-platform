@@ -43,14 +43,14 @@ public class CodeGenerator {
     public static void main(String[] args) {
 
 
-        System.out.println(getCurrentProjectPath()+"/ace-modules/ace-move");
+        System.out.println(getCurrentProjectPath()+"/ace-modules/ace-movie");
 
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        final String projectPath = getCurrentProjectPath()+"/ace-modules/ace-move";
+        final String projectPath = getCurrentProjectPath()+"/ace-modules/ace-movie";
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("lxr");
         gc.setOpen(false);
@@ -58,7 +58,7 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/ag_auth?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/ag_movie?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("baisheng");
@@ -68,7 +68,7 @@ public class CodeGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         //pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.github.wxiaoqi.security.move");
+        pc.setParent("com.github.wxiaoqi.security.movie");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
