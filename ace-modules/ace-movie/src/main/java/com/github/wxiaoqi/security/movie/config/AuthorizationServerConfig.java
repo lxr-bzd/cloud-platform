@@ -5,16 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
@@ -45,23 +47,36 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
+        // authorization_code
+        //password
+        //client_credentials
+        //implicit
+        //refresh_ token
         clients.inMemory()
                 .withClient("client1")
-                .secret("123456")
+                .secret(bCryptPasswordEncoder().encode("123456"))
                 .authorizedGrantTypes("password", "refresh_token")//允许授权范围
-                .authorities("ROLE_ADMIN","ROLE_USER")//客户端可以使用的权限
+                .authorities("ADMIN","ROLE_USER")//客户端可以使用的权限
                 .scopes( "read", "write")
                 .accessTokenValiditySeconds(7200)
                 .refreshTokenValiditySeconds(7200);
     }
 
+    @Bean
+    public PasswordEncoder bCryptPasswordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
-        endpoints.prefix("/api");
+
         endpoints.tokenStore(tokenStore())
+                .allowedTokenEndpointRequestMethods(HttpMethod.GET,HttpMethod.POST)
+
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);//必须设置 UserDetailsService 否则刷新token 时会报错
+
     }
 
     @Override
@@ -70,6 +85,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()")
                 .allowFormAuthenticationForClients();//允许表单登录
+
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+
 
     }
 }

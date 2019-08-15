@@ -19,6 +19,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    MobileSecurityConfigurer mobileSecurityConfigurer;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -37,8 +40,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(new PasswordEncoder(){
+
+            @Override
+            public String encode(CharSequence charSequence) {
+                return charSequence.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                if(rawPassword==null){
+
+                    return encodedPassword==null?true:false;
+
+                }
+                return rawPassword.equals(encodedPassword);
+            }
+        });
     }
 
 
@@ -61,6 +79,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/**").authenticated()
                 .and()
                 .formLogin();
+
+        http.apply(mobileSecurityConfigurer);
     }
 
 }
