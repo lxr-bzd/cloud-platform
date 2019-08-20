@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -30,8 +31,10 @@ public class MobileLoginSuccessHandler implements org.springframework.security.w
     private ObjectMapper objectMapper;*/
     @Autowired
     private ClientDetailsService clientDetailsService;
+
     @Autowired
-    private AuthorizationServerTokenServices authorizationServerTokenServices;
+    private static ApplicationContext applicationContext;
+
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
@@ -57,7 +60,7 @@ public class MobileLoginSuccessHandler implements org.springframework.security.w
             OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(clientDetails);
 
             OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request, authentication);
-            OAuth2AccessToken oAuth2AccessToken = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
+            OAuth2AccessToken oAuth2AccessToken = getAuthorizationServerTokenServices().createAccessToken(oAuth2Authentication);
             logger.info("获取token 成功：{}", oAuth2AccessToken.getValue());
 
 
@@ -67,6 +70,11 @@ public class MobileLoginSuccessHandler implements org.springframework.security.w
             throw new BadCredentialsException(
                     "Failed to decode basic authentication token");
         }
+    }
+
+    public AuthorizationServerTokenServices getAuthorizationServerTokenServices(){
+
+        return applicationContext.getBean(AuthorizationServerTokenServices.class);
     }
 
 }

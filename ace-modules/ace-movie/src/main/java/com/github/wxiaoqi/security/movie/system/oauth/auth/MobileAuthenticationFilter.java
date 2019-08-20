@@ -19,11 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 public class MobileAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
     public static final String SPRING_SECURITY_FORM_MOBILE_KEY = "mobile";
 
+    public static final String MOBILE_TOKEN_URL = "/authentication/mobile";
+
     private String mobileParameter = SPRING_SECURITY_FORM_MOBILE_KEY;
     private boolean postOnly = true;
 
     public MobileAuthenticationFilter() {
-        super(new AntPathRequestMatcher(SecurityConstants.MOBILE_TOKEN_URL, "POST"));
+        super(new AntPathRequestMatcher(MOBILE_TOKEN_URL, "POST"));
     }
 
     public Authentication attemptAuthentication(HttpServletRequest request,
