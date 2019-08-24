@@ -19,8 +19,7 @@ import java.util.Map;
  * @create: 2019-08-15 15:54
  **/
 @Component
-public class AuthExceptionEntryPoint implements AuthenticationEntryPoint
-{
+public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,

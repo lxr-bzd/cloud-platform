@@ -4,6 +4,7 @@ package com.github.wxiaoqi.security.movie.config;
 
 import com.github.wxiaoqi.security.movie.system.oauth.auth.MobileAuthenticationFilter;
 import com.github.wxiaoqi.security.movie.system.oauth.auth.MobileAuthenticationProvider;
+import com.github.wxiaoqi.security.movie.system.oauth.auth.MobileLoginFailureHandler;
 import com.github.wxiaoqi.security.movie.system.oauth.auth.MobileLoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,14 +24,17 @@ public class MobileSecurityConfigurer extends SecurityConfigurerAdapter<DefaultS
     @Autowired
     private MobileLoginSuccessHandler mobileLoginSuccessHandler;
 
+    @Autowired
+    private MobileLoginFailureHandler mobileLoginFailureHandler;
+
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         MobileAuthenticationFilter mobileAuthenticationFilter = new MobileAuthenticationFilter();
         mobileAuthenticationFilter.setAuthenticationManager(http.getSharedObject(AuthenticationManager.class));
-        mobileAuthenticationFilter.setAuthenticationSuccessHandler(mobileLoginSuccessHandler);
-
         MobileAuthenticationProvider mobileAuthenticationProvider = new MobileAuthenticationProvider();
+        mobileAuthenticationFilter.setAuthenticationSuccessHandler(mobileLoginSuccessHandler);
+        mobileAuthenticationFilter.setAuthenticationFailureHandler(mobileLoginFailureHandler);
         //mobileAuthenticationProvider.setUserService(userDetailsService);
         http.authenticationProvider(mobileAuthenticationProvider)
                 .addFilterAfter(mobileAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * @create: 2019-06-13 13:32
  **/
 @Configuration
-public class WebConfig<addInterceptors> extends WebMvcConfigurationSupport {
+public class WebConfig extends WebMvcConfigurationSupport {
 
 
     @Autowired

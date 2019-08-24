@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.UnapprovedClientAuthenticationException;
 import org.springframework.security.oauth2.provider.*;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ import java.util.HashMap;
  * 手机号登录成功，返回oauth token
  */
 @Component
-public class MobileLoginSuccessHandler implements org.springframework.security.web.authentication.AuthenticationSuccessHandler {
+public class MobileLoginSuccessHandler implements AuthenticationSuccessHandler {
     private Logger logger = LoggerFactory.getLogger(getClass());
    /* @Autowired
     private ObjectMapper objectMapper;*/
@@ -33,16 +34,16 @@ public class MobileLoginSuccessHandler implements org.springframework.security.w
     private ClientDetailsService clientDetailsService;
 
     @Autowired
-    private static ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         String header = request.getHeader("Authorization");
 
-        if (header == null || !header.startsWith("Basic ")) {
+        /*if (header == null || !header.startsWith("Basic ")) {
             throw new UnapprovedClientAuthenticationException("请求头中client信息为空");
-        }
+        }*/
 
         try {
             //String[] tokens = extractAndDecodeHeader(header);

@@ -2,7 +2,6 @@ package com.github.wxiaoqi.security.movie.system.oauth.auth;
 
 import com.github.wxiaoqi.security.movie.entity.User;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 

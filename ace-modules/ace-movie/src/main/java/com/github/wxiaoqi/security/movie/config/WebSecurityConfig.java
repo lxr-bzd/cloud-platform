@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.FilterChainProxy;
 
 
 @Configuration
@@ -28,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+   @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean() ;
     }
@@ -69,17 +70,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
+        FilterChainProxy d;
         //不拦截 oauth 开放的资源
         http.csrf().disable();
 
-        http.requestMatchers()//使HttpSecurity接收以"/login/","/oauth/"开头请求。
-                .antMatchers("/oauth/**", "/login/**", "/logout/**")
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**").authenticated()
-                .and()
-                .formLogin();
+        http.authorizeRequests()
+                .antMatchers("/oauth/**").permitAll()
+                .anyRequest().authenticated();
 
         http.apply(mobileSecurityConfigurer);
     }

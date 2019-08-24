@@ -22,10 +22,10 @@ public class MobileAuthenticationFilter extends AbstractAuthenticationProcessing
     public static final String MOBILE_TOKEN_URL = "/authentication/mobile";
 
     private String mobileParameter = SPRING_SECURITY_FORM_MOBILE_KEY;
-    private boolean postOnly = true;
+    private boolean postOnly = false;
 
     public MobileAuthenticationFilter() {
-        super(new AntPathRequestMatcher(MOBILE_TOKEN_URL, "POST"));
+        super(new AntPathRequestMatcher(MOBILE_TOKEN_URL, "GET"));
     }
 
     public Authentication attemptAuthentication(HttpServletRequest request,
