@@ -25,7 +25,7 @@ public class MobileAuthenticationFilter extends AbstractAuthenticationProcessing
     private boolean postOnly = false;
 
     public MobileAuthenticationFilter() {
-        super(new AntPathRequestMatcher(MOBILE_TOKEN_URL, "GET"));
+        super(new AntPathRequestMatcher(MOBILE_TOKEN_URL));
     }
 
     public Authentication attemptAuthentication(HttpServletRequest request,

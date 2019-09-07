@@ -73,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         FilterChainProxy d;
         //不拦截 oauth 开放的资源
         http.csrf().disable();
-
+        http.requestMatchers().mvcMatchers("oauth/**","/authentication/**");
         http.authorizeRequests()
                 .antMatchers("/oauth/**").permitAll()
                 .anyRequest().authenticated();
