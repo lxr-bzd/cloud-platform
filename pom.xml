@@ -36,6 +36,8 @@
         <module>ace-sidecar</module>
         <module>ace-control</module>
         <module>ace-modules</module>
+        <module>bzd-auth</module>
+        <module>bzd-common</module>
     </modules>
     <packaging>pom</packaging>
     <developers>

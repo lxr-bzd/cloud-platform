@@ -11,6 +11,11 @@
 
     <groupId>com.github.wxiaoqi</groupId>
     <artifactId>bzd-common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>bzd-common-core</module>
+        <module>bzd-common-security</module>
+    </modules>
 
 
 </project>
