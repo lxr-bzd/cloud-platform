@@ -29,4 +29,6 @@ public interface ICouponService extends IService<Coupon> {
      */
     void useCoupon(Integer uid,Integer id);
 
+    void test();
+
 }

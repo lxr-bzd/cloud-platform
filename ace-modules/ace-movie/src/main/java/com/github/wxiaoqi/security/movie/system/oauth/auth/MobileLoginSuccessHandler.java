@@ -66,6 +66,7 @@ public class MobileLoginSuccessHandler implements AuthenticationSuccessHandler {
             OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(clientDetails);
 
             OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request, authentication);
+            oAuth2Authentication.getName();
             OAuth2AccessToken oAuth2AccessToken = getAuthorizationServerTokenServices().createAccessToken(oAuth2Authentication);
             logger.info("获取token 成功：{}", oAuth2AccessToken.getValue());
 

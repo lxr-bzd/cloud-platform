@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 /**
- * @description
+ * @description 传输格式
  * @author: lxr
  * @create: 2019-09-06 15:49
  **/

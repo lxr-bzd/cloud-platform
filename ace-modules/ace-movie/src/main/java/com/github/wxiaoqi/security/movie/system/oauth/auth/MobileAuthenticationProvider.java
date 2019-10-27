@@ -20,6 +20,7 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
         //UserVo userVo = userService.findUserByMobile((String) mobileAuthenticationToken.getPrincipal());
 
         User userDetails = new User();
+        userDetails.setName("123");
 
 
         MobileAuthenticationToken authenticationToken = new MobileAuthenticationToken(userDetails, new ArrayList<>());

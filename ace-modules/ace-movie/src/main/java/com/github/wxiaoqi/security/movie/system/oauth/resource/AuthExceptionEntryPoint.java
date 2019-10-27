@@ -31,9 +31,9 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
         response.setHeader("Content-Type", "application/json;charset=UTF-8");
         try {
             if(cause instanceof InvalidTokenException) {
-                response.getWriter().write("{mag:\"token无效\"}");
+                response.getWriter().write("{\"msg\":\"token无效\"}");
             }else{
-                response.getWriter().write("{mag:\"其他\"}");
+                response.getWriter().write("{msg:\"其他\"}");
             }
         } catch (IOException e) {
             e.printStackTrace();
