@@ -1,0 +1,44 @@
+server:
+  port: 8761
+
+spring:
+  security:
+    user:
+      name: root
+      password: root
+  application:
+    name: bzd-eureka-config
+  profiles:
+    active: native
+
+  cloud:
+    config:
+      enabled: false
+      server:
+        native:
+          search-locations: classpath:/config/
+        prefix: /config #防止和注册中心冲突
+
+# docker-compose部署时候 hostname 换成bs-eureka
+# 类似的 redis 使用bs-redis ,gateway 换成 bs-gateway
+eureka:
+  dashboard:
+    path: /eurekaCenter #h后台访问路径
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://root:root@${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    eviction-interval-timer-in-ms: 4000
+    enable-self-preservation: false
+    renewal-percent-threshold: 0.9
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

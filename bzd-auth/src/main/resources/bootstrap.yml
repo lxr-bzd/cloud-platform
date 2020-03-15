@@ -1,0 +1,30 @@
+server:
+  port: 3000
+
+spring:
+  application:
+    name: bzd-auth
+  profiles:
+    active: dev
+  # 配置中心
+  cloud:
+    config:
+      fail-fast: true
+      name: ${spring.application.name}
+      prefix: /config
+      profile: ${spring.profiles.active}
+      discovery:
+        enabled: true
+        service-id: bzd-eureka-config
+      #配置中心启用了basic认证
+      headers: {Authorization: 'Basic cm9vdDpyb290'}
+
+# 注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka/
+
